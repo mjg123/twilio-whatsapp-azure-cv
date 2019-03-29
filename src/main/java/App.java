@@ -38,6 +38,7 @@ public class App {
     private static String getAzureCVDescription(String mediaUrl) {
 
         // Replace <Subscription Key> with your valid subscription key.
+        // SECURITY WARNING: Do NOT commit this to GitHub or put it anywhere public
         String subscriptionKey = "<Subscription Key>";
 
         String uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/analyze";
@@ -72,6 +73,8 @@ public class App {
                 // Format and display the JSON response.
                 String jsonString = EntityUtils.toString(entity);
                 JSONObject json = new JSONObject(jsonString);
+
+                // This extracts the caption from the JSON returned by Azure CV
                 return json
                         .getJSONObject("description")
                         .getJSONArray("captions")
