@@ -2,4 +2,4 @@
 
 This code is used in the blog I wrote about integrating Twilio's WhatsApp sandbox with Azure's Computer Vision APIs
 
-(Link TBD)
+https://www.twilio.com/blog/using-whatsapp-twilio-and-azure-to-generate-photo-alt-text-in-java
