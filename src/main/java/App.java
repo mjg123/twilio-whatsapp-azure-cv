@@ -14,18 +14,21 @@ import java.net.URI;
 
 public class App {
 
+    private static final String NO_IMAGE_MESSAGE =
+            "<Response><Message>I can't help if you don't send an image \uD83D\uDE09</Message></Response>";
+    private static final String NO_DESCRIPTION_MESSAGE =
+            "<Response><Message>Sorry, I couldn't describe that \uD83D\uDE23</Message></Response>";
+
     public static void main(String[] args) {
         get("/", (req, res) -> "Hello \uD83D\uDC4B");
 
         post("/msg", (req, res) -> {
 
             String mediaUrl = req.queryParams("MediaUrl0");
-            // don't reply to messages without an image attached
-            if (mediaUrl == null) return null;
+            if (mediaUrl == null) return NO_IMAGE_MESSAGE;
 
             String description = getAzureCVDescription(mediaUrl);
-            // don't reply to the message if we couldn't get a description
-            if (description == null) return null;
+            if (description == null) return NO_DESCRIPTION_MESSAGE;
 
             // Return TwiML to send the description back to WhatsApp
             return "<Response><Message>It’s " + description + "</Message></Response>";
